@@ -28,6 +28,17 @@
             color: rgb(10, 127, 177);
         }
 
+        #start-btn {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background-color: #0a7fb1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+
         .container {
             display: flex;
             justify-content: center;
@@ -68,7 +79,7 @@
 </head>
 <body>
     <h1>Simon Says Game</h1>
-    <h2>Press any key to start the game</h2>
+    <button id="start-btn">Start Game</button>
     <p>*********</p>
     <br>
     <div class="container">
@@ -92,16 +103,28 @@
         let started = false;
         let level = 0;
 
-        let h2 = document.querySelector("h2");
+        // let h2 = document.querySelector("h2");
 
-        document.addEventListener("keypress", function(){
-        if(started == false) {
-            console.log("game is started");
-            started = true;
-        
-            levelUp();
+        let startBtn = document.getElementById("start-btn");
+        startBtn.addEventListener("click", startGame);
+
+        function startGame() {
+            if (!started) {
+                // console.log("Game started");
+                started = true;
+                levelUp();
+                startBtn.style.display = "none";
+            }
         }
-        });
+
+        // document.addEventListener("keypress", function(){
+        // if(started == false) {
+        //     console.log("game is started");
+        //     started = true;
+        
+        //     levelUp();
+        // }
+        // });
 
         function gameFlash(btn){
             btn.classList.add("gameFlash");
@@ -180,6 +203,7 @@
             level = 0;
             gameSeq = [];
             userSeq = [];
+            startBtn.style.display = "inline-block";
         }
 
         function large() {
